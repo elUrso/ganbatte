@@ -20,7 +20,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="VHL-a7-O7I"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 2" id="Th7-Wb-wDI"/>
+                    <tabBarItem key="tabBarItem" title="Statistics" id="Th7-Wb-wDI"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k4n-77-eH4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -49,7 +49,7 @@
                             <outlet property="delegate" destination="xxr-n8-GSq" id="sIo-zA-zbe"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Item" id="3j7-BD-YBy"/>
+                    <tabBarItem key="tabBarItem" title="History" id="3j7-BD-YBy"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RDy-X7-bmm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -117,7 +117,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ywC-wI-L1n"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 1" id="pxe-XF-BNu"/>
+                    <tabBarItem key="tabBarItem" title="Today" id="pxe-XF-BNu"/>
                     <connections>
                         <outlet property="dayLabel" destination="Yov-V4-Ij8" id="cfl-I2-GzG"/>
                         <outlet property="monthLabel" destination="GYv-KN-ryE" id="DzT-xh-3jV"/>
@@ -154,7 +154,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="288" height="276.5"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <view key="tableFooterView" contentMode="scaleToFill" id="lmg-R2-Q6o">
+                        <view key="tableFooterView" contentMode="scaleToFill" misplaced="YES" id="lmg-R2-Q6o">
                             <rect key="frame" x="0.0" y="72" width="288" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -195,6 +195,59 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pke-RG-87f" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1035" y="-425"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="cDB-a1-mLd">
+            <objects>
+                <viewController id="uFW-ka-WyX" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="XcO-of-K5S">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z96-Lv-pTy">
+                                <rect key="frame" x="16" y="36" width="48" height="30"/>
+                                <state key="normal" title="Cancel"/>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="T1P-65-uF9">
+                                <rect key="frame" x="38" y="156" width="97" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FT4-Xp-IUa">
+                                <rect key="frame" x="47" y="127" width="45" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tig-zE-XaM">
+                                <rect key="frame" x="68" y="212" width="88" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="63e-jg-eMB">
+                                <rect key="frame" x="68" y="241" width="97" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Z96-Lv-pTy" firstAttribute="top" secondItem="bLx-f5-cfj" secondAttribute="top" constant="16" id="nYf-Hk-Qk9"/>
+                            <constraint firstItem="Z96-Lv-pTy" firstAttribute="leading" secondItem="bLx-f5-cfj" secondAttribute="leading" constant="16" id="rJE-Lt-YLf"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="bLx-f5-cfj"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aaG-s3-T3P" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1851" y="-451"/>
         </scene>
     </scenes>
 </document>
