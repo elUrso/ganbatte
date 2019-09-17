@@ -15,7 +15,13 @@ enum TimerState {
 }
 
 class NewActivityViewController: UIViewController {
-    var timer = TimerState.Stop(focus: 0.0, distracted: 0.0)
+    var canUpdate: Bool = false
+
+    var timer = TimerState.Stop(focus: 0.0, distracted: 0.0) {
+        didSet {
+            updateTimer()
+        }
+    }
     
     @IBAction func back(_ sender: Any) {
         dismiss(animated: true, completion: nil)
@@ -28,6 +34,18 @@ class NewActivityViewController: UIViewController {
         toogle()
     }
     
+    func updateTimer() {
+        if canUpdate {
+            switch timer {
+            case .Focused(let focus, let _, let _):
+                focusTimerLabel.text = "\(focus)"
+            case .Distracted(let _, let distracted, let _):
+                focusTimerLabel.text = "\(distracted)"
+            default:
+                break
+            }
+        }
+    }
     
     func toogle() {
         switch timer {
@@ -48,12 +66,47 @@ class NewActivityViewController: UIViewController {
                 focus: 0.0,
                 distracted: 0.0,
                 timer: clock
-                
             )
         case .Focused(let focus, let distracted, let timer):
-            break
+            timer.stop()
+            var clock = Timer.scheduledTimer(
+                withTimeInterval: 1, repeats: true, block: {_ in
+                    switch self.timer {
+                    case .Focused(let focus, let distracted, let timer):
+                        self.timer = .Distracted(focus: focus, distracted: distracted + 1, timer: timer)
+                    default:
+                        break
+                    }
+                }
+            )
+
+            clock.fire()
+
+            self.timer = .Distracted(
+                focus: focus,
+                distracted: distracted,
+                timer: clock
+            )
         case .Distracted(let focus, let distracted, let timer):
-            break
+            timer.stop()
+            var clock = Timer.scheduledTimer(
+                withTimeInterval: 1, repeats: true, block: {_ in
+                    switch self.timer {
+                    case .Focused(let focus, let distracted, let timer):
+                        self.timer = .Distracted(focus: focus + 1, distracted: distracted, timer: timer)
+                    default:
+                        break
+                    }
+                }
+            )
+
+            clock.fire()
+
+            self.timer = .Focused(
+                focus: focus,
+                distracted: distracted,
+                timer: clock
+            )
         }
     }
     
@@ -64,6 +117,7 @@ class NewActivityViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        canUpdate = true
     }
 
 
