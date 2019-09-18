@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F2840D9233186FA00D4F820 /* FeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2840D7233186FA00D4F820 /* FeedbackViewController.swift */; };
+		3F2840DA233186FA00D4F820 /* FeedbackViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F2840D8233186FA00D4F820 /* FeedbackViewController.xib */; };
+		3F2840DD23319C7A00D4F820 /* Feedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2840DC23319C7A00D4F820 /* Feedback.swift */; };
+		3F2840DF23319F5600D4F820 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2840DE23319F5600D4F820 /* Extensions.swift */; };
+		3F2840E12331A5B800D4F820 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2840E02331A5B800D4F820 /* Activity.swift */; };
 		3FDAC36B2330546400BEEA4F /* NewActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDAC3692330546400BEEA4F /* NewActivityViewController.swift */; };
 		3FDAC36C2330546400BEEA4F /* NewActivityViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FDAC36A2330546400BEEA4F /* NewActivityViewController.xib */; };
 		3FE2D561232C4FFB006B284C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE2D560232C4FFB006B284C /* AppDelegate.swift */; };
@@ -19,6 +24,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3F2840D7233186FA00D4F820 /* FeedbackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackViewController.swift; sourceTree = "<group>"; };
+		3F2840D8233186FA00D4F820 /* FeedbackViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedbackViewController.xib; sourceTree = "<group>"; };
+		3F2840DC23319C7A00D4F820 /* Feedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feedback.swift; sourceTree = "<group>"; };
+		3F2840DE23319F5600D4F820 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		3F2840E02331A5B800D4F820 /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
 		3FDAC3692330546400BEEA4F /* NewActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewActivityViewController.swift; sourceTree = "<group>"; };
 		3FDAC36A2330546400BEEA4F /* NewActivityViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewActivityViewController.xib; sourceTree = "<group>"; };
 		3FE2D55D232C4FFB006B284C /* Ganbatte.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ganbatte.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -43,6 +53,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3F2840DB23319C6000D4F820 /* models */ = {
+			isa = PBXGroup;
+			children = (
+				3F2840DC23319C7A00D4F820 /* Feedback.swift */,
+				3F2840E02331A5B800D4F820 /* Activity.swift */,
+			);
+			path = models;
+			sourceTree = "<group>";
+		};
 		3FE2D554232C4FFB006B284C = {
 			isa = PBXGroup;
 			children = (
@@ -62,6 +81,7 @@
 		3FE2D55F232C4FFB006B284C /* Ganbatte */ = {
 			isa = PBXGroup;
 			children = (
+				3F2840DB23319C6000D4F820 /* models */,
 				3FE2D56C232C4FFC006B284C /* Info.plist */,
 				3FE2D576232C551E006B284C /* activity */,
 				3FE2D575232C5513006B284C /* misc */,
@@ -103,6 +123,7 @@
 				3FE2D560232C4FFB006B284C /* AppDelegate.swift */,
 				3FE2D567232C4FFC006B284C /* Assets.xcassets */,
 				3FE2D569232C4FFC006B284C /* LaunchScreen.storyboard */,
+				3F2840DE23319F5600D4F820 /* Extensions.swift */,
 			);
 			path = misc;
 			sourceTree = "<group>";
@@ -112,6 +133,8 @@
 			children = (
 				3FDAC3692330546400BEEA4F /* NewActivityViewController.swift */,
 				3FDAC36A2330546400BEEA4F /* NewActivityViewController.xib */,
+				3F2840D7233186FA00D4F820 /* FeedbackViewController.swift */,
+				3F2840D8233186FA00D4F820 /* FeedbackViewController.xib */,
 			);
 			path = activity;
 			sourceTree = "<group>";
@@ -178,6 +201,7 @@
 				3FE2D578232C556E006B284C /* Main.storyboard in Resources */,
 				3FE2D56B232C4FFC006B284C /* LaunchScreen.storyboard in Resources */,
 				3FE2D568232C4FFC006B284C /* Assets.xcassets in Resources */,
+				3F2840DA233186FA00D4F820 /* FeedbackViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -189,9 +213,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				3FE2D57A232C5E62006B284C /* TodayViewController.swift in Sources */,
+				3F2840D9233186FA00D4F820 /* FeedbackViewController.swift in Sources */,
 				3FE2D57D232C6707006B284C /* TodoViewController.swift in Sources */,
+				3F2840DF23319F5600D4F820 /* Extensions.swift in Sources */,
 				3FE2D581232C6B22006B284C /* TodoViewCell.swift in Sources */,
 				3FE2D561232C4FFB006B284C /* AppDelegate.swift in Sources */,
+				3F2840E12331A5B800D4F820 /* Activity.swift in Sources */,
+				3F2840DD23319C7A00D4F820 /* Feedback.swift in Sources */,
 				3FDAC36B2330546400BEEA4F /* NewActivityViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -10,10 +10,28 @@ import UIKit
 
 class TodoViewController: UITableViewController {
 
+    var activity: Activity? = nil
+    
     var activities = [
         "Limpar a casa",
         "Fazer a tarefa"
     ]
+    
+    func saveActivity() {
+        var savedActivities = [Activity]()
+        if let data = UserDefaults.standard.data(forKey: "Activities") {
+            let decoder = JSONDecoder()
+            do {
+                try savedActivities = decoder.decode([Activity].self, from: data)
+            } catch { }
+        }
+        savedActivities.append(activity!)
+        do {
+            let encoder = JSONEncoder()
+            let data = try encoder.encode(savedActivities)
+            UserDefaults.standard.set(data, forKey: "Activities")
+        } catch { }
+    }
     
     func addActivity(_ activity: String) {
         if activities.contains(activity) {
@@ -117,6 +135,11 @@ class TodoViewController: UITableViewController {
             
             // 4. Present the alert.
             self.present(alert, animated: true, completion: nil)
+        } else {
+            let newActivity = NewActivityViewController(nibName: "NewActivityViewController", bundle: nil)
+            newActivity.name = activities[indexPath.row]
+            newActivity.activityDelegate = self
+            present(newActivity, animated: true, completion: nil)
         }
         self.tableView.deselectRow(at: indexPath, animated: true)
     }

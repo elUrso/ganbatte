@@ -15,7 +15,15 @@ enum TimerState {
 }
 
 class NewActivityViewController: UIViewController {
+    var activityDelegate: TodoViewController? = nil
+    
+    let updateDelta: TimeInterval = 1
+    
     var canUpdate: Bool = false
+    
+    var feedback: Feedback? = nil
+    
+    var name: String = ""
 
     var timer = TimerState.Stop(focus: 0.0, distracted: 0.0) {
         didSet {
@@ -26,21 +34,33 @@ class NewActivityViewController: UIViewController {
     @IBAction func back(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
+    @IBOutlet var nameTextField: UITextField!
+    @IBOutlet var descriptionTextField: UITextField!
     @IBOutlet var focusTimerLabel: UILabel!
     
     @IBOutlet var distractedTimerLabel: UILabel!
     
+    @IBOutlet var toogleButton: UIButton!
+    
     @IBAction func toggleTimer(_ sender: Any) {
         toogle()
+        switch timer {
+        case .Stop(_, _):
+            toogleButton.setTitle("Start", for: .normal)
+        case .Focused(_, _, _):
+            toogleButton.setTitle("Pause", for: .normal)
+        case .Distracted(_, _, _):
+            toogleButton.setTitle("Resume", for: .normal)
+        }
     }
     
     func updateTimer() {
         if canUpdate {
             switch timer {
-            case .Focused(let focus, let _, let _):
-                focusTimerLabel.text = "\(focus)"
-            case .Distracted(let _, let distracted, let _):
-                focusTimerLabel.text = "\(distracted)"
+            case .Focused(let focus, _, _):
+                focusTimerLabel.text = focus.asTimestamp
+            case .Distracted(_, let distracted, _):
+                distractedTimerLabel.text = distracted.asTimestamp
             default:
                 break
             }
@@ -50,11 +70,11 @@ class NewActivityViewController: UIViewController {
     func toogle() {
         switch timer {
         case .Stop:
-            var clock = Timer.scheduledTimer(
-                withTimeInterval: 1, repeats: true, block: {_ in
+            let clock = Timer.scheduledTimer(
+                withTimeInterval: updateDelta, repeats: true, block: {_ in
                     switch self.timer {
                     case .Focused(let focus, let distracted, let timer):
-                        self.timer = .Focused(focus: focus + 1, distracted: distracted, timer: timer)
+                        self.timer = .Focused(focus: focus + self.updateDelta, distracted: distracted, timer: timer)
                     default:
                         break
                     }
@@ -67,13 +87,14 @@ class NewActivityViewController: UIViewController {
                 distracted: 0.0,
                 timer: clock
             )
+
         case .Focused(let focus, let distracted, let timer):
-            timer.stop()
-            var clock = Timer.scheduledTimer(
-                withTimeInterval: 1, repeats: true, block: {_ in
+            timer.invalidate()
+            let clock = Timer.scheduledTimer(
+                withTimeInterval: self.updateDelta, repeats: true, block: {_ in
                     switch self.timer {
-                    case .Focused(let focus, let distracted, let timer):
-                        self.timer = .Distracted(focus: focus, distracted: distracted + 1, timer: timer)
+                    case .Distracted(let focus, let distracted, let timer):
+                        self.timer = .Distracted(focus: focus, distracted: distracted + self.updateDelta, timer: timer)
                     default:
                         break
                     }
@@ -88,12 +109,12 @@ class NewActivityViewController: UIViewController {
                 timer: clock
             )
         case .Distracted(let focus, let distracted, let timer):
-            timer.stop()
-            var clock = Timer.scheduledTimer(
-                withTimeInterval: 1, repeats: true, block: {_ in
+            timer.invalidate()
+            let clock = Timer.scheduledTimer(
+                withTimeInterval: updateDelta, repeats: true, block: {_ in
                     switch self.timer {
                     case .Focused(let focus, let distracted, let timer):
-                        self.timer = .Distracted(focus: focus + 1, distracted: distracted, timer: timer)
+                        self.timer = .Focused(focus: focus + self.updateDelta, distracted: distracted, timer: timer)
                     default:
                         break
                     }
@@ -111,6 +132,20 @@ class NewActivityViewController: UIViewController {
     }
     
     @IBAction func stopTimer(_ sender: Any) {
+        switch timer {
+        case .Focused(let focus, let distracted, let timer):
+            timer.invalidate()
+            self.timer = .Stop(focus: focus, distracted: distracted)
+        case .Distracted(let focus, let distracted, let timer):
+            timer.invalidate()
+            self.timer = .Stop(focus: focus, distracted: distracted)
+        default:
+            break
+        }
+        
+        let feedback = FeedbackViewController(nibName: "FeedbackViewController", bundle: nil)
+        feedback.activityController = self
+        present(feedback, animated: true)
     }
     
     override func viewDidLoad() {
@@ -118,6 +153,7 @@ class NewActivityViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         canUpdate = true
+        nameTextField.text = name
     }
 
 
@@ -131,4 +167,29 @@ class NewActivityViewController: UIViewController {
     }
     */
 
+    func finish()
+    {
+        switch timer {
+        case .Stop(let focus, let distracted):
+            let activity = Activity(
+                name: nameTextField.text ?? "Untitled activity",
+                description: descriptionTextField.text ?? "No description",
+                date: Date(),
+                focusedTime: focus,
+                distractedTime: distracted,
+                feedback: feedback!
+            )
+            
+            activityDelegate?.activity = activity
+            
+            dismiss(animated: true, completion: {
+                [weak delegate = activityDelegate] in
+                delegate?.saveActivity()
+            })
+        default: break
+        }
+        
+
+    }
 }
+
