@@ -17,6 +17,8 @@ enum TimerState {
 class NewActivityViewController: UIViewController {
     var activityDelegate: TodoViewController? = nil
     
+    @IBOutlet var activityIndicator: UIActivityIndicatorView!
+    
     let updateDelta: TimeInterval = 1
     
     var canUpdate: Bool = false
@@ -42,6 +44,7 @@ class NewActivityViewController: UIViewController {
     
     @IBOutlet var toogleButton: UIButton!
     
+    @IBOutlet var finalizeButton: UIButton!
     @IBAction func toggleTimer(_ sender: Any) {
         toogle()
         switch timer {
@@ -59,10 +62,12 @@ class NewActivityViewController: UIViewController {
             switch timer {
             case .Focused(let focus, _, _):
                 focusTimerLabel.text = focus.asTimestamp
+                if !activityIndicator.isAnimating { activityIndicator.startAnimating() }
             case .Distracted(_, let distracted, _):
                 distractedTimerLabel.text = distracted.asTimestamp
+                if !activityIndicator.isAnimating { activityIndicator.startAnimating() }
             default:
-                break
+                activityIndicator.stopAnimating()
             }
         }
     }
@@ -87,6 +92,8 @@ class NewActivityViewController: UIViewController {
                 distracted: 0.0,
                 timer: clock
             )
+            
+            finalizeButton.isEnabled = true
 
         case .Focused(let focus, let distracted, let timer):
             timer.invalidate()
@@ -154,6 +161,8 @@ class NewActivityViewController: UIViewController {
         // Do any additional setup after loading the view.
         canUpdate = true
         nameTextField.text = name
+        nameTextField.delegate = self
+        descriptionTextField.delegate = self
     }
 
 
@@ -193,3 +202,9 @@ class NewActivityViewController: UIViewController {
     }
 }
 
+extension NewActivityViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return false
+    }
+}

@@ -13,11 +13,6 @@ class TodayViewController: UIViewController {
     @IBOutlet var monthLabel: UILabel!
     @IBOutlet var dayLabel: UILabel!
     
-    @IBAction func createNewActivity() {
-        let newActivity = NewActivityViewController(nibName: "NewActivityViewController", bundle: nil)
-        present(newActivity, animated: true, completion: nil)
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 

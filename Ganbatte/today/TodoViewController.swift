@@ -9,13 +9,11 @@
 import UIKit
 
 class TodoViewController: UITableViewController {
+    var selectedRow = 0
 
     var activity: Activity? = nil
     
-    var activities = [
-        "Limpar a casa",
-        "Fazer a tarefa"
-    ]
+    var activities = [String]()
     
     func saveActivity() {
         var savedActivities = [Activity]()
@@ -31,6 +29,7 @@ class TodoViewController: UITableViewController {
             let data = try encoder.encode(savedActivities)
             UserDefaults.standard.set(data, forKey: "Activities")
         } catch { }
+        tableView(tableView, commit: .delete, forRowAt: IndexPath(row: selectedRow, section: 0))
     }
     
     func addActivity(_ activity: String) {
@@ -51,6 +50,7 @@ class TodoViewController: UITableViewController {
         
         } else {
             activities.append(activity)
+            UserDefaults.standard.set(activities, forKey: "TodoItens")
             tableView.reloadData()
         }
         
@@ -64,6 +64,9 @@ class TodoViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        activities = (UserDefaults.standard.array(forKey: "TodoItens") as? [String]) ?? [String]()
+        tableView.reloadData()
     }
 
     // MARK: - Table view data source
@@ -138,6 +141,7 @@ class TodoViewController: UITableViewController {
         } else {
             let newActivity = NewActivityViewController(nibName: "NewActivityViewController", bundle: nil)
             newActivity.name = activities[indexPath.row]
+            selectedRow = indexPath.row
             newActivity.activityDelegate = self
             present(newActivity, animated: true, completion: nil)
         }
@@ -156,6 +160,7 @@ class TodoViewController: UITableViewController {
         if editingStyle == .delete {
             // Delete the row from the data source
             activities.remove(at: indexPath.row)
+            UserDefaults.standard.set(activities, forKey: "TodoItens")
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view

@@ -12,8 +12,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NewActivityViewController" customModule="Ganbatte" customModuleProvider="target">
             <connections>
+                <outlet property="activityIndicator" destination="iDX-Je-RQq" id="H8K-Up-Q9u"/>
                 <outlet property="descriptionTextField" destination="lM8-sG-1Dz" id="XGH-cY-DkR"/>
                 <outlet property="distractedTimerLabel" destination="cgL-GY-Srg" id="Xw1-1l-XgI"/>
+                <outlet property="finalizeButton" destination="8CG-FY-igO" id="fdQ-rg-g5A"/>
                 <outlet property="focusTimerLabel" destination="Wmg-tu-w5I" id="wck-lK-Sfe"/>
                 <outlet property="nameTextField" destination="0vk-tH-h4a" id="r0d-xS-O8p"/>
                 <outlet property="toogleButton" destination="Mvl-ii-fej" id="QMh-N2-EJl"/>
@@ -48,7 +50,7 @@
                                     <rect key="frame" x="0.0" y="32.5" width="343" height="30"/>
                                     <nil key="textColor"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <textInputTraits key="textInputTraits"/>
+                                    <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                 </textField>
                             </subviews>
                         </stackView>
@@ -65,34 +67,34 @@
                                     <rect key="frame" x="0.0" y="32.5" width="343" height="30"/>
                                     <nil key="textColor"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <textInputTraits key="textInputTraits"/>
+                                    <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                 </textField>
                             </subviews>
                         </stackView>
                     </subviews>
                 </stackView>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="cQY-Ap-2Mf">
-                    <rect key="frame" x="0.0" y="263" width="375" height="225"/>
+                    <rect key="frame" x="0.0" y="263" width="375" height="225.5"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="Eud-JY-fXA">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="104"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="104.5"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wmg-tu-w5I">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="45.5"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="38"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="48"/>
+                                    <fontDescription key="fontDescription" name="CourierNewPSMT" family="Courier New" pointSize="42"/>
                                     <color key="textColor" red="0.17139378860000001" green="0.66666668650000005" blue="0.11970528580000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cgL-GY-Srg">
-                                    <rect key="frame" x="0.0" y="58.5" width="375" height="45.5"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="38"/>
+                                    <rect key="frame" x="0.0" y="61" width="375" height="43.5"/>
+                                    <fontDescription key="fontDescription" name="CourierNewPSMT" family="Courier New" pointSize="38"/>
                                     <color key="textColor" red="1" green="0.2355533216" blue="0.141620844" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
                         </stackView>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="sze-17-Ofv">
-                            <rect key="frame" x="0.0" y="129" width="375" height="96"/>
+                            <rect key="frame" x="0.0" y="129.5" width="375" height="96"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mvl-ii-fej">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -102,7 +104,7 @@
                                         <action selector="toggleTimer:" destination="-1" eventType="touchUpInside" id="GfV-8D-bP6"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8CG-FY-igO">
+                                <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8CG-FY-igO">
                                     <rect key="frame" x="0.0" y="52" width="375" height="44"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                     <state key="normal" title="Finalize"/>
@@ -114,6 +116,9 @@
                         </stackView>
                     </subviews>
                 </stackView>
+                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="iDX-Je-RQq">
+                    <rect key="frame" x="177.5" y="615" width="20" height="20"/>
+                </activityIndicatorView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -122,9 +127,11 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="RK5-To-MBZ" secondAttribute="trailing" constant="16" id="Ox4-xi-LU8"/>
                 <constraint firstItem="RK5-To-MBZ" firstAttribute="top" secondItem="y7i-Mb-qY3" secondAttribute="bottom" constant="16" id="Qoz-TG-SgY"/>
                 <constraint firstItem="cQY-Ap-2Mf" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="RZz-bo-e7H"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="iDX-Je-RQq" secondAttribute="bottom" constant="32" id="Wk0-AQ-NiK"/>
                 <constraint firstItem="y7i-Mb-qY3" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="Yyg-OP-WNG"/>
                 <constraint firstItem="RK5-To-MBZ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="fyn-Jv-Dlf"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="cQY-Ap-2Mf" secondAttribute="trailing" id="rx3-ef-edK"/>
+                <constraint firstItem="iDX-Je-RQq" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="yVp-dL-g9Y"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="53.600000000000001" y="48.125937031484263"/>
