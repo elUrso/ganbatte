@@ -165,6 +165,9 @@ class NewActivityViewController: UIViewController {
         descriptionTextField.delegate = self
     }
 
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
 
     /*
     // MARK: - Navigation

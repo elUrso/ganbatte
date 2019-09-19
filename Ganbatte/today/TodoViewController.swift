@@ -93,7 +93,7 @@ class TodoViewController: UITableViewController {
                 todoCell.activityLabel.textColor = view.tintColor
             } else {
                 todoCell.activityLabel.text = activities[indexPath.row]
-                todoCell.activityLabel.textColor = .black
+                todoCell.activityLabel.textColor = .white
             }
         }
             

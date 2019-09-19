@@ -18,6 +18,7 @@ class HistoryTableViewController: UITableViewController {
             do {
                 try activities = decoder.decode([Activity].self, from: data)
                 activities.reverse()
+                tableView.reloadData()
             } catch { }
         }
     }

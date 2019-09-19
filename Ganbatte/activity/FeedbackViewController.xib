@@ -32,7 +32,7 @@
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Accomplishment?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JAu-07-wBO">
                                     <rect key="frame" x="0.0" y="0.0" width="273" height="20.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <nil key="textColor"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="7rx-Yo-nBe">
@@ -46,6 +46,7 @@
                                         <segment title="😐"/>
                                         <segment title="🙂"/>
                                     </segments>
+                                    <color key="tintColor" red="0.94901960780000005" green="0.36078431370000003" blue="0.019607843140000001" alpha="1" colorSpace="calibratedRGB"/>
                                 </segmentedControl>
                             </subviews>
                             <constraints>
@@ -58,7 +59,7 @@
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Concentration?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sJT-9Y-xap">
                                     <rect key="frame" x="0.0" y="0.0" width="273" height="20.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <nil key="textColor"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="JcQ-f1-Omh">
@@ -72,6 +73,7 @@
                                         <segment title="😐"/>
                                         <segment title="🙂"/>
                                     </segments>
+                                    <color key="tintColor" red="0.94901960780000005" green="0.36078431370000003" blue="0.019607843140000001" alpha="1" colorSpace="calibratedRGB"/>
                                 </segmentedControl>
                             </subviews>
                             <constraints>
@@ -84,7 +86,7 @@
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Productivity?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L10-vS-AoR">
                                     <rect key="frame" x="0.0" y="0.0" width="273" height="20.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <nil key="textColor"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="3Wt-wl-Nlk">
@@ -98,6 +100,7 @@
                                         <segment title="😐"/>
                                         <segment title="🙂"/>
                                     </segments>
+                                    <color key="tintColor" red="0.94901960780000005" green="0.36078431370000003" blue="0.019607843140000001" alpha="1" colorSpace="calibratedRGB"/>
                                 </segmentedControl>
                             </subviews>
                             <constraints>
@@ -109,19 +112,20 @@
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How do you feel about..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dgP-pg-kza">
                     <rect key="frame" x="16" y="36" width="343" height="25.5"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
-                    <nil key="textColor"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FeT-JE-TAe">
                     <rect key="frame" x="16" y="615" width="343" height="36"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                    <color key="tintColor" red="0.94901960780000005" green="0.36078431370000003" blue="0.019607843140000001" alpha="1" colorSpace="calibratedRGB"/>
                     <state key="normal" title="Finish"/>
                     <connections>
                         <action selector="returnFeedback:" destination="-1" eventType="touchUpInside" id="M4z-Ny-kga"/>
                     </connections>
                 </button>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="dgP-pg-kza" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="16" id="7bN-SO-eBd"/>
                 <constraint firstItem="8rs-Pf-lHF" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="DUY-kb-X1o"/>

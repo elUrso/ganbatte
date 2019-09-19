@@ -40,6 +40,9 @@ class TodayViewController: UIViewController {
         return "\(monthdayName), \(weekdayName)"
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
     /*
     // MARK: - Navigation
 

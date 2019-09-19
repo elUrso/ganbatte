@@ -76,6 +76,10 @@ class FeedbackViewController: UIViewController {
         segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor:UIColor.white, NSAttributedString.Key.font: font], for:.selected)
 
     }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
 
     /*
     // MARK: - Navigation
