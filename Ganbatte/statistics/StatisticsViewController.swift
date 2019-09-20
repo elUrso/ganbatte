@@ -21,9 +21,6 @@ class StatisticsViewController: UIViewController, ChartViewDelegate {
                 activities.reverse()
             } catch { }
         }
-        if loaded {
-            setChartData()
-        }
     }
 
     @IBOutlet var radarChartView: RadarChartView!
@@ -93,10 +90,6 @@ class StatisticsViewController: UIViewController, ChartViewDelegate {
     */
     
     func setChartData() {
-        let mult: UInt32 = 80
-        let min: UInt32 = 20
-        let cnt = 3
-        
         let filteredData = activities.map {
             $0.feedback
             } .map {
