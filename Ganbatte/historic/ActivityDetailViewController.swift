@@ -12,6 +12,17 @@ class ActivityDetailViewController: UIViewController {
 
     @IBOutlet var testLabel: UILabel!
     
+    @IBOutlet var nameLabel: UILabel!
+    @IBOutlet var descriptionLabel: UILabel!
+    @IBOutlet var focusedLabel: UILabel!
+    
+    @IBOutlet var distractedLabel: UILabel!
+    
+    @IBOutlet var accomplishmentLabel: UILabel!
+    @IBOutlet var concentrationLabel: UILabel!
+    @IBOutlet var productivityLabel: UILabel!
+    
+    
     var activity: Activity? = nil {
         didSet {
             // Nothing
@@ -23,7 +34,13 @@ class ActivityDetailViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         if let activity = activity {
-            testLabel.text = activity.name
+            nameLabel.text = activity.name
+            descriptionLabel.text = activity.description
+            focusedLabel.text = activity.focusedTime.asTimestamp
+            distractedLabel.text = activity.distractedTime.asTimestamp
+            accomplishmentLabel.text = "Accomplishment \(activity.feedback.accomplishment.asEmoji)"
+            concentrationLabel.text = "Concentration \(activity.feedback.concentration.asEmoji)"
+            productivityLabel.text = "Productitvity \(activity.feedback.productivity.asEmoji)"
         }
     }
     

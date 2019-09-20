@@ -10,6 +10,21 @@ import UIKit
 import Charts
 
 class StatisticsViewController: UIViewController, ChartViewDelegate {
+    var activities = [Activity]()
+    var loaded = false
+    
+    @objc func updateActivities() {
+        if let data = UserDefaults.standard.data(forKey: "Activities") {
+            let decoder = JSONDecoder()
+            do {
+                try activities = decoder.decode([Activity].self, from: data)
+                activities.reverse()
+            } catch { }
+        }
+        if loaded {
+            setChartData()
+        }
+    }
 
     @IBOutlet var radarChartView: RadarChartView!
     
@@ -21,6 +36,10 @@ class StatisticsViewController: UIViewController, ChartViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        updateActivities()
+        
+        loaded = true
 
         // Do any additional setup after loading the view.
         radarChartView.delegate = self
@@ -78,10 +97,49 @@ class StatisticsViewController: UIViewController, ChartViewDelegate {
         let min: UInt32 = 20
         let cnt = 3
         
-        let block: (Int) -> RadarChartDataEntry = { _ in return RadarChartDataEntry(value: Double(arc4random_uniform(mult) + min))}
-        let entries1 = (0..<cnt).map(block)
-        let entries2 = (0..<cnt).map(block)
-        let entries3 = (0..<cnt).map(block)
+        let filteredData = activities.map {
+            $0.feedback
+            } .map {
+            [$0.accomplishment, $0.concentration, $0.productivity]
+        }
+        
+        var accomplishment = [0, 0, 0]
+        var concentration = [0, 0, 0]
+        var productivity = [0, 0, 0]
+        
+        for i in filteredData {
+            switch i[0] {
+            case .Sad:
+                accomplishment[0] += 1
+            case .Neutral:
+                accomplishment[1] += 1
+            case .Happy:
+                accomplishment[2] += 1
+            }
+            switch i[1] {
+            case .Sad:
+                concentration[0] += 1
+            case .Neutral:
+                concentration[1] += 1
+            case .Happy:
+                concentration[2] += 1
+            }
+            switch i[2] {
+            case .Sad:
+                productivity[0] += 1
+            case .Neutral:
+                productivity[1] += 1
+            case .Happy:
+                productivity[2] += 1
+            }
+        }
+        
+        print(accomplishment, concentration, productivity)
+        
+        let block: (Double) -> RadarChartDataEntry = { number in return RadarChartDataEntry(value: Double(number))}
+        let entries1 = normalized(accomplishment).map(block)
+        let entries2 = normalized(concentration).map(block)
+        let entries3 = normalized(productivity).map(block)
         
         let set1 = RadarChartDataSet(entries: entries1, label: "Accomplishment")
         set1.setColor(UIColor(red: 242/255, green: 92/255, blue: 5/255, alpha: 1))
@@ -112,10 +170,15 @@ class StatisticsViewController: UIViewController, ChartViewDelegate {
         
         let data = RadarChartData(dataSets: [set1, set2, set3])
         data.setValueFont(.systemFont(ofSize: 12, weight: .light))
-        data.setDrawValues(true)
+        data.setDrawValues(false)
         data.setValueTextColor(.white)
         
         radarChartView.data = data
+    }
+    
+    func normalized(_ arr: [Int]) -> [Double] {
+        let max = Double(arr[0] + arr[1] + arr[2])
+        return [Double(arr[0])/max * 100, Double(arr[1])/max * 100, Double(arr[2])/max * 100]
     }
 
 }

@@ -57,7 +57,7 @@ class HistoryTableViewController: UITableViewController {
         if let cell = cell as? HistoryTableViewCell {
             cell.titleOutlet.text = activities[indexPath.row].name
             cell.descriptionOutlet.text = activities[indexPath.row].description
-            cell.dateOutlet.text = activities[indexPath.row].date.description
+            cell.dateOutlet.text = activities[indexPath.row].date.MonthDay
             cell.focusOutlet.text = activities[indexPath.row].focusedTime.asTimestamp
             cell.distractedOutlet.text = activities[indexPath.row].distractedTime.asTimestamp
         }
@@ -120,4 +120,25 @@ class HistoryTableViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
     }
 
+}
+
+extension Date {
+    var MonthDay: String {
+        return "\(self.getDayName()) \(self.getMonthName())"
+    }
+    
+    func getMonthName() -> String {
+        let date = self
+        let format = DateFormatter()
+        let calendar = Calendar.current
+        return format.monthSymbols[calendar.component(.month, from: date)-1]
+    }
+    
+    func getDayName() -> String {
+        let date = self
+        let calendar = Calendar.current
+        let monthday = calendar.component(.day, from: date)
+        let monthdayName = monthday.asOrdinal
+        return "\(monthdayName)"
+    }
 }

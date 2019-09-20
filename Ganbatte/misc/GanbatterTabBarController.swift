@@ -36,11 +36,9 @@ class GanbatterTabBarController: UITabBarController {
             }
         }
         if item.title == "Statistics" {
-            /*if let historyNavigation = viewControllers?[1] as? UINavigationController {
-                if let historyTableView = historyNavigation.viewControllers[0] as? HistoryTableViewController {
-                    historyTableView.updateActivities()
-                }
-            }*/
+            if let statistics = viewControllers?[1] as? StatisticsViewController {
+                statistics.updateActivities()
+            }
         }
     }
 

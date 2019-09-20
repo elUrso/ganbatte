@@ -58,3 +58,17 @@ extension Emotion: Codable {
     }
 }
 
+extension Emotion {
+    var asEmoji: String {
+        get {
+            switch self {
+                case .Sad:
+                return "☹️"
+                case .Neutral:
+                return "😐"
+                case .Happy:
+                return "🙂"
+            }
+        }
+    }
+}
